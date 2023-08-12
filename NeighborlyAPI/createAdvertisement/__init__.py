@@ -1,5 +1,6 @@
 import azure.functions as func
 import pymongo
+import os
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
 
@@ -7,7 +8,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     if request:
         try:
-            url = "mongoDBConnection"
+            url = os.environ["mongoDBConnection"]
             client = pymongo.MongoClient(url)
             database = client['nfmongo']
             collection = database['advertisements']
